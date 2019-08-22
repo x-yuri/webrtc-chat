@@ -10,7 +10,7 @@ const server = http.Server(app);
 server.listen(port, function(){
     console.log('listening on *:' + port);
 });
-const io = socketIO(server);
+const io = socketIO(server, {path: '/ws'});
 
 let nConnections = 0;
 let startedConnections = [];

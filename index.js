@@ -2,7 +2,7 @@ const startButton = document.querySelector('.start-button');
 const localVideo = document.querySelector('.local-video');
 const remoteVideo = document.querySelector('.remote-video');
 
-const socket = io();
+const socket = io({path: '/ws'});
 let started, peerId;
 
 navigator.mediaDevices.getUserMedia({video: true})
