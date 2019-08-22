@@ -1,0 +1,26 @@
+.videos {
+    text-align: center;
+}
+.video-table {
+    width: auto;
+    margin: auto;
+}
+.video-table td {
+    position: relative;
+    padding: 0;
+}
+video {
+    display: block;
+    height: 150px;
+    border: 1px solid black;
+    margin: 0 0 0 auto;
+    background: url(/no-signal.gif);
+}
+.local-video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+}
+.start-button {
+}

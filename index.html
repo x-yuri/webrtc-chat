@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="videos">
+        <button class="start-button" disabled>Start</button>
+        <br>
+        <table class="video-table"><tr><td>
+            <video class="remote-video" autoplay></video>
+            <video class="local-video" autoplay></video>
+        </table>
+    </div>
+    <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script src="/index.js"></script>
+</body>
+</html>
