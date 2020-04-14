@@ -12,16 +12,16 @@ server.listen(port, function(){
 });
 const io = socketIO(server, {path: '/ws'});
 
-let nConnections = 0;
+let startedConnections = [];
 let availableConnections = [];
 
 io.on('connect', function(socket) {
     console.log('connect', socket.id);
 
     socket.on('start', function() {
-        nConnections++;
+        startedConnections.push(socket.id);
         availableConnections.push(socket.id);
-        console.log('start', socket.id, nConnections, availableConnections);
+        console.log('start', socket.id, startedConnections, availableConnections);
         socket.emit('start', availableConnections);
     });
 
@@ -31,17 +31,16 @@ io.on('connect', function(socket) {
     });
 
     socket.on('stop', function() {
-        nConnections--;
+        startedConnections = startedConnections.filter(id => id != socket.id);
         availableConnections = availableConnections.filter(id => id != socket.id);
-        console.log('stop', socket.id, nConnections, availableConnections);
+        console.log('stop', socket.id, startedConnections, availableConnections);
         io.emit('stop', socket.id);
     });
 
     socket.on('disconnect', function(reason) {
-        if (availableConnections.find(id => id == socket.id))
-            nConnections--;
+        startedConnections = startedConnections.filter(id => id != socket.id);
         availableConnections = availableConnections.filter(id => id != socket.id);
-        console.log('disconnect', socket.id, nConnections, availableConnections);
+        console.log('disconnect', socket.id, startedConnections, availableConnections);
         io.emit('stop', socket.id);
     });
 
