@@ -40,9 +40,9 @@ socket.on('connect', function() {
     startButton.disabled = false;
     changeStartButton('start');
 });
-socket.on('start', function(startedConnections) {
+socket.on('start', function(availableConnections) {
     changeStartButton('stop');
-    peerId = startedConnections.find(id => id != socket.id);
+    peerId = availableConnections.find(id => id != socket.id);
     if (peerId) {
         socket.emit('commutate', peerId);
         createPeerConnection();
